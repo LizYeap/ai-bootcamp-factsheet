@@ -12,58 +12,59 @@
        CSS VARIABLES & THEME
     ============================ */
     :root {
-      --primary-dark: #06070e;
-      --primary-purple: #390347;
-      --secondary-blue: #000a66;
-      --accent: #ffe499;
-      --accent-dark: #f5d060;
       --font: 'Poppins', sans-serif;
     }
 
+    /* ── DARK MODE ── Primary: #390347 · Secondary: #000a66 · Accent: #ffe499 */
     [data-theme="dark"] {
+      --accent: #ffe499;
+      --accent-dark: #f5d060;
       --bg-body: #06070e;
-      --bg-card: #1c1145;
-      --bg-card-hover: #231550;
-      --bg-countdown: #1a0226;
+      --bg-card: #1a0530;
+      --bg-card-hover: #240840;
+      --bg-countdown: #0d0040;
       --bg-footer: #06070e;
-      --bg-parking-card: #20153d;
-      --bg-parking-header: #2d1555;
-      --bg-subsection: #150f35;
+      --bg-parking-card: #060e40;
+      --bg-parking-header: #0a1555;
+      --bg-subsection: #07093a;
       --text-primary: #f0f0f5;
-      --text-secondary: #a0a8c0;
-      --text-label: #7a80a8;
+      --text-secondary: #a0a8c8;
+      --text-label: #7880b8;
       --text-accent: #ffe499;
-      --border-color: #362b6a;
-      --divider: #3d3272;
-      --pill-bg: rgba(255, 228, 153, 0.15);
-      --pill-border: rgba(255, 228, 153, 0.3);
-      --chevron-bg: rgba(255, 228, 153, 0.15);
-      --icon-bg: #2d1555;
-      --shadow: 0 4px 28px rgba(0,0,0,0.6);
-      --rates-bg: #130f2e;
+      --border-color: #3a1265;
+      --divider: #2a1a5a;
+      --pill-bg: rgba(255, 228, 153, 0.12);
+      --pill-border: rgba(255, 228, 153, 0.28);
+      --chevron-bg: rgba(255, 228, 153, 0.13);
+      --icon-bg: #2a0845;
+      --shadow: 0 4px 28px rgba(0,0,0,0.65);
+      --rates-bg: #050830;
     }
 
+    /* ── LIGHT MODE ── Primary: #000a66 · Secondary: #b5bdff · Accent: #fbbf24 */
     [data-theme="light"] {
-      --bg-body: #f3f0fa;
+      --accent: #fbbf24;
+      --accent-dark: #d97706;
+      --bg-body: #f0f2ff;
       --bg-card: #ffffff;
-      --bg-card-hover: #f9f7ff;
-      --bg-countdown: #390347;
-      --bg-footer: #06070e;
-      --bg-parking-card: #f7f4ff;
-      --bg-parking-header: #e8dfff;
-      --bg-subsection: #f0ecff;
+      --bg-card-hover: #f5f7ff;
+      --bg-countdown: #000a66;
+      --bg-footer: #000a66;
+      --bg-parking-card: #eef0ff;
+      --bg-parking-header: #b5bdff;
+      --bg-subsection: #e8ebff;
       --text-primary: #06070e;
-      --text-secondary: #4a4060;
-      --text-label: #7a6d99;
-      --text-accent: #390347;
-      --border-color: #e0d8f0;
-      --divider: #ccc0e8;
-      --pill-bg: rgba(57, 3, 71, 0.08);
-      --pill-border: rgba(57, 3, 71, 0.2);
-      --chevron-bg: rgba(57, 3, 71, 0.1);
-      --icon-bg: #e8dfff;
-      --shadow: 0 4px 24px rgba(57,3,71,0.1);
-      --rates-bg: #ede8ff;
+      --text-secondary: #2a3060;
+      --text-label: #5560a0;
+      --text-accent: #000a66;
+      --border-color: #c0c8f5;
+      --divider: #ced5f8;
+      --pill-bg: rgba(0, 10, 102, 0.07);
+      --pill-border: rgba(0, 10, 102, 0.2);
+      --chevron-bg: rgba(251, 191, 36, 0.18);
+      --icon-bg: #b5bdff;
+      --shadow: 0 4px 24px rgba(0,10,102,0.1);
+      --rates-bg: #e0e4ff;
     }
 
     /* ============================
@@ -822,10 +823,10 @@
        FOOTER
     ============================ */
     #footer {
-      background: #06070e;
+      background: var(--bg-footer);
       padding: 48px 24px 36px;
       text-align: center;
-      border-top: 1px solid rgba(255,228,153,0.1);
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .cta-buttons {
@@ -848,12 +849,12 @@
       transition: transform 0.2s, box-shadow 0.2s;
       color: #06070e;
       background: var(--accent);
-      box-shadow: 0 0 24px rgba(255,228,153,0.35), 0 4px 16px rgba(0,0,0,0.3);
+      box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent), 0 4px 16px rgba(0,0,0,0.3);
     }
 
     .cta-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 36px rgba(255,228,153,0.5), 0 6px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 0 36px color-mix(in srgb, var(--accent) 70%, transparent), 0 6px 20px rgba(0,0,0,0.4);
     }
 
     .footer-brand {
