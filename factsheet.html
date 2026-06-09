@@ -912,7 +912,9 @@
     /* ============================
        RESPONSIVE
     ============================ */
+    br.mobile-br { display: none; }
     @media (max-width: 640px) {
+      br.mobile-br { display: block; }
       #hero { min-height: 480px; padding: 70px 16px 48px; }
       .event-pills { gap: 8px; }
       .event-pill { font-size: 12px; padding: 8px 14px; }
@@ -954,7 +956,7 @@
 
     <h1>AI Implementation Bootcamp</h1>
 
-    <p class="hero-tagline">"Build practical AI workforces for every role in your company"</p>
+    <p class="hero-tagline">"Build practical AI workforces<br class="mobile-br"> for every role in your company"</p>
 
     <hr class="hero-divider" />
 
