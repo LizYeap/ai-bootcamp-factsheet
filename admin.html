@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS — AI Bootcamp Factsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0e0f1a; --bg2: #161728; --bg3: #1e2035; --bg4: #252840;
+      --accent: #ffe499; --accent2: #f0a500;
+      --text: #e8eaf6; --text2: #9ea8d8; --text3: #636ea8;
+      --border: #2e3260; --danger: #ff6b6b; --success: #6bcb77;
+      --radius: 10px; --sidebar: 220px;
+    }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; }
+
+    /* ── SIDEBAR ── */
+    #sidebar {
+      width: var(--sidebar); min-height: 100vh; background: var(--bg2);
+      border-right: 1px solid var(--border); display: flex; flex-direction: column;
+      position: fixed; left: 0; top: 0; bottom: 0; z-index: 10; overflow-y: auto;
+    }
+    #sidebar-logo { padding: 20px 18px 14px; border-bottom: 1px solid var(--border); }
+    #sidebar-logo .logo-title { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    #sidebar-logo .logo-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+    #sidebar nav { flex: 1; padding: 12px 0; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 18px; cursor: pointer; font-size: 13px; font-weight: 500;
+      color: var(--text2); transition: background 0.15s, color 0.15s;
+      border-left: 3px solid transparent;
+    }
+    .nav-item:hover { background: var(--bg3); color: var(--text); }
+    .nav-item.active { background: var(--bg3); color: var(--accent); border-left-color: var(--accent); }
+    .nav-item .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+    #sidebar-footer { padding: 14px 18px; border-top: 1px solid var(--border); }
+
+    /* ── MAIN ── */
+    #main { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    #topbar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 5;
+    }
+    #topbar h1 { font-size: 15px; font-weight: 600; }
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+    /* ── CONTENT ── */
+    #content-area { padding: 28px; flex: 1; }
+    .section-panel { display: none; }
+    .section-panel.active { display: block; }
+
+    /* ── CARDS ── */
+    .cms-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: 20px; overflow: hidden;
+    }
+    .cms-card-header {
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      font-size: 13px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 8px;
+    }
+    .cms-card-body { padding: 20px; }
+
+    /* ── FIELDS ── */
+    .field-row { margin-bottom: 18px; }
+    .field-row:last-child { margin-bottom: 0; }
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+    input[type="text"], input[type="url"], textarea, select {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px;
+      color: var(--text); padding: 9px 12px; font-family: 'Poppins', sans-serif; font-size: 13px;
+      transition: border-color 0.2s; outline: none;
+    }
+    input[type="text"]:focus, input[type="url"]:focus, textarea:focus { border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+    .field-hint { font-size: 11px; color: var(--text3); margin-top: 5px; }
+    .html-hint { font-size: 11px; color: var(--text3); margin-top: 5px; }
+    .html-hint a { color: var(--accent); text-decoration: none; }
+    .html-hint a:hover { text-decoration: underline; }
+
+    /* two-col grid */
+    .field-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 700px) { .field-grid-2, .field-grid-3 { grid-template-columns: 1fr; } }
+
+    /* ── LIST ITEMS ── */
+    .list-container { display: flex; flex-direction: column; gap: 10px; }
+    .list-item {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 16px; position: relative;
+    }
+    .list-item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .list-item-label { font-size: 12px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+    .list-item-fields { display: flex; flex-direction: column; gap: 10px; }
+    .list-item-fields .field-row { margin-bottom: 0; }
+    .list-item-fields .field-grid-2 { gap: 10px; }
+
+    /* ── RATES TABLE EDITOR ── */
+    .rates-editor { margin-top: 12px; }
+    .rates-editor-label { font-size: 12px; font-weight: 600; color: var(--text3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .rate-row { display: grid; grid-template-columns: 1fr 120px 36px; gap: 8px; margin-bottom: 6px; align-items: center; }
+    .rate-row input { margin: 0; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 7px; font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #1a1000; }
+    .btn-primary:hover { background: #ffd966; }
+    .btn-secondary { background: var(--bg4); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg3); }
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 5px 10px; font-size: 12px; }
+    .btn-danger:hover { background: rgba(255,107,107,0.12); }
+    .btn-add { background: transparent; color: var(--accent); border: 1px dashed var(--accent); width: 100%; justify-content: center; padding: 9px; margin-top: 8px; }
+    .btn-add:hover { background: rgba(255,228,153,0.08); }
+    .btn-save-big {
+      background: var(--accent); color: #1a1000; padding: 11px 28px;
+      font-size: 14px; font-weight: 700; border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255,228,153,0.3);
+    }
+    .btn-save-big:hover { background: #ffd966; box-shadow: 0 0 28px rgba(255,228,153,0.5); }
+    .btn-sm { padding: 5px 10px; font-size: 11px; }
+
+    /* ── STATUS BADGE ── */
+    #save-status { font-size: 12px; padding: 6px 12px; border-radius: 6px; display: none; }
+    #save-status.saving { display: inline-block; background: var(--bg4); color: var(--text2); }
+    #save-status.success { display: inline-block; background: rgba(107,203,119,0.15); color: var(--success); }
+    #save-status.error { display: inline-block; background: rgba(255,107,107,0.15); color: var(--danger); }
+
+    /* ── SETTINGS ── */
+    .settings-group { margin-bottom: 24px; }
+    .settings-group-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+    /* ── HTML GUIDE ── */
+    #html-guide-modal {
+      display: none; position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+    }
+    #html-guide-modal.open { display: flex; }
+    #html-guide-box {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px; max-width: 620px; width: 95%; max-height: 85vh; overflow-y: auto;
+    }
+    #html-guide-box h2 { font-size: 16px; color: var(--accent); margin-bottom: 4px; }
+    #html-guide-box .guide-sub { font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+    .guide-entry { margin-bottom: 22px; }
+    .guide-tag { display: inline-block; background: var(--bg4); border: 1px solid var(--border); border-radius: 5px; padding: 3px 10px; font-family: monospace; font-size: 13px; color: var(--accent); margin-bottom: 8px; }
+    .guide-desc { font-size: 13px; color: var(--text2); margin-bottom: 10px; }
+    .guide-example { background: var(--bg3); border-radius: 8px; padding: 12px 16px; font-size: 13px; }
+    .guide-example .ex-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; font-weight: 600; }
+    .guide-example .ex-code { font-family: monospace; color: var(--text2); margin-bottom: 10px; word-break: break-all; }
+    .guide-example .ex-result { color: var(--text); padding-top: 8px; border-top: 1px solid var(--border); }
+    .guide-close { margin-top: 20px; }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 20px; font-size: 13px; font-weight: 500;
+      transform: translateY(80px); opacity: 0; transition: all 0.3s;
+      max-width: 340px;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.success { border-color: var(--success); color: var(--success); }
+    #toast.error { border-color: var(--danger); color: var(--danger); }
+
+    /* ── DIVIDER ── */
+    .section-divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+    hr.field-sep { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<div id="sidebar">
+  <div id="sidebar-logo">
+    <div class="logo-title">⚙️ CMS Admin</div>
+    <div class="logo-sub">AI Bootcamp Factsheet</div>
+  </div>
+  <nav>
+    <div class="nav-item active" onclick="showSection('s-settings')"><span class="nav-icon">🔑</span> Settings</div>
+    <div class="nav-item" onclick="showSection('s-hero')"><span class="nav-icon">🦸</span> Hero</div>
+    <div class="nav-item" onclick="showSection('s-details')"><span class="nav-icon">📋</span> Event Details</div>
+    <div class="nav-item" onclick="showSection('s-venue')"><span class="nav-icon">🏢</span> Venue Guide</div>
+    <div class="nav-item" onclick="showSection('s-prepare')"><span class="nav-icon">🎒</span> What to Prepare</div>
+    <div class="nav-item" onclick="showSection('s-faq')"><span class="nav-icon">❓</span> FAQ</div>
+    <div class="nav-item" onclick="showSection('s-footer')"><span class="nav-icon">🔗</span> Footer &amp; Contact</div>
+    <div class="nav-item" onclick="showSection('s-guide')"><span class="nav-icon">📖</span> HTML Guide</div>
+  </nav>
+  <div id="sidebar-footer">
+    <a href="/" target="_blank" style="font-size:12px;color:var(--text3);text-decoration:none;">↗ View Live Page</a>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div id="main">
+  <div id="topbar">
+    <h1 id="topbar-title">Settings</h1>
+    <div class="topbar-actions">
+      <span id="save-status"></span>
+      <button class="btn btn-primary btn-save-big" onclick="saveConfig()">💾 Save &amp; Deploy</button>
+    </div>
+  </div>
+
+  <div id="content-area">
+
+    <!-- ===========================
+         SETTINGS
+    =========================== -->
+    <div id="s-settings" class="section-panel active">
+      <div class="cms-card">
+        <div class="cms-card-header">🔑 GitHub Connection</div>
+        <div class="cms-card-body">
+          <div class="settings-group">
+            <div class="settings-group-title">GitHub API Credentials</div>
+            <div class="field-grid-2">
+              <div class="field-row">
+                <label>GitHub Token</label>
+                <input type="text" id="cfg-gh-token" placeholder="ghp_xxxxxxxxxxxx" />
+                <div class="field-hint">Personal access token with <strong>repo</strong> scope. Stored in your browser only.</div>
+              </div>
+              <div class="field-row">
+                <label>Repository (owner/repo)</label>
+                <input type="text" id="cfg-gh-repo" placeholder="LizYeap/ai-bootcamp-factsheet" />
+              </div>
+              <div class="field-row">
+                <label>Branch</label>
+                <input type="text" id="cfg-gh-branch" placeholder="main" />
+              </div>
+              <div class="field-row">
+                <label>Config File Path</label>
+                <input type="text" id="cfg-gh-path" placeholder="ck-config.json" />
+                <div class="field-hint">Path to ck-config.json in your repo.</div>
+              </div>
+            </div>
+            <div style="margin-top:14px;display:flex;gap:10px;">
+              <button class="btn btn-primary" onclick="saveGitHubSettings()">Save Connection</button>
+              <button class="btn btn-secondary" onclick="testConnection()">Test Connection</button>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <div class="settings-group">
+            <div class="settings-group-title">Load Current Config</div>
+            <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">Pull the latest <code>ck-config.json</code> from GitHub into all fields below.</p>
+            <button class="btn btn-secondary" onclick="loadFromGitHub()">⬇ Load Config from GitHub</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         HERO
+    =========================== -->
+    <div id="s-hero" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">🦸 Hero Section</div>
+        <div class="cms-card-body">
+          <div class="field-row">
+            <label>Badge Pill Text</label>
+            <input type="text" id="hero-badgePill" placeholder="Event Factsheet" />
+          </div>
+          <div class="field-row">
+            <label>Event Title</label>
+            <input type="text" id="hero-title" placeholder="AI Implementation Bootcamp" />
+          </div>
+          <div class="field-row">
+            <label>Tagline</label>
+            <textarea id="hero-tagline" rows="2"></textarea>
+            <div class="html-hint">Supports HTML. <a href="#" onclick="openGuide();return false;">See formatting guide →</a></div>
+          </div>
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>CTA Button Text</label>
+              <input type="text" id="hero-ctaText" placeholder="Register Now — It's Free" />
+            </div>
+            <div class="field-row">
+              <label>CTA Button Link</label>
+              <input type="url" id="hero-ctaLink" placeholder="https://..." />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">💊 Event Pills</div>
+        <div class="cms-card-body">
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Date Pill</label>
+              <input type="text" id="pills-date" placeholder="📅 29 June – 1 July 2026 · Mon to Wed" />
+            </div>
+            <div class="field-row">
+              <label>Time Pill</label>
+              <input type="text" id="pills-time" placeholder="🕙 10:00 AM – 6:00 PM" />
+            </div>
+            <div class="field-row">
+              <label>Location Pill</label>
+              <input type="text" id="pills-location" placeholder="📍 Menara EcoWorld, KL" />
+            </div>
+            <div class="field-row">
+              <label>Bonus Session Pill</label>
+              <input type="text" id="pills-bonusSession" placeholder="⭐ Bonus Session: 7:00 PM – 9:00 PM" />
+            </div>
+          </div>
+          <hr class="field-sep" />
+          <p style="font-size:12px;color:var(--text3);margin-bottom:10px;">Sticky bar (appears when hero scrolls out of view)</p>
+          <div class="field-grid-3">
+            <div class="field-row">
+              <label>Sticky Date</label>
+              <input type="text" id="pills-stickyDate" />
+            </div>
+            <div class="field-row">
+              <label>Sticky Time</label>
+              <input type="text" id="pills-stickyTime" />
+            </div>
+            <div class="field-row">
+              <label>Sticky Location</label>
+              <input type="text" id="pills-stickyLocation" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">⏱ Countdown Timer</div>
+        <div class="cms-card-body">
+          <div class="field-row">
+            <label>Target Date &amp; Time (ISO 8601)</label>
+            <input type="text" id="countdown-targetDate" placeholder="2026-06-29T10:00:00+08:00" />
+            <div class="field-hint">Format: <code>YYYY-MM-DDTHH:MM:SS+08:00</code></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         EVENT DETAILS
+    =========================== -->
+    <div id="s-details" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">📋 Event Details</div>
+        <div class="cms-card-body">
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Venue Name</label>
+              <input type="text" id="details-venueName" />
+            </div>
+            <div class="field-row">
+              <label>Venue Address</label>
+              <textarea id="details-venueAddress" rows="3"></textarea>
+              <div class="html-hint">Use <code>&lt;br&gt;</code> for line breaks. <a href="#" onclick="openGuide();return false;">Guide →</a></div>
+            </div>
+            <div class="field-row">
+              <label>Google Maps Link</label>
+              <input type="url" id="details-googleMapsLink" />
+            </div>
+            <div class="field-row">
+              <label>Waze Link</label>
+              <input type="url" id="details-wazeLink" />
+            </div>
+          </div>
+          <hr class="field-sep" />
+          <div class="field-grid-3">
+            <div class="field-row">
+              <label>Registration Time</label>
+              <input type="text" id="details-registrationTime" placeholder="9:30 AM" />
+            </div>
+            <div class="field-row">
+              <label>Event Time</label>
+              <input type="text" id="details-eventTime" placeholder="10:00 AM – 6:00 PM" />
+            </div>
+            <div class="field-row">
+              <label>Bonus Session Time</label>
+              <input type="text" id="details-bonusTime" placeholder="7:00 PM – 9:00 PM" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         VENUE GUIDE
+    =========================== -->
+    <div id="s-venue" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">🚗 Getting There</div>
+        <div class="cms-card-body">
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Grab Section Heading</label>
+              <input type="text" id="venueGuide-grabHeading" />
+            </div>
+            <div class="field-row">
+              <label>Grab Drop-off Point</label>
+              <input type="text" id="venueGuide-grabDropoff" />
+            </div>
+            <div class="field-row">
+              <label>Driving Section Heading</label>
+              <input type="text" id="venueGuide-drivingHeading" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">🅿️ Parking Options</div>
+        <div class="cms-card-body">
+          <div id="parking-list" class="list-container"></div>
+          <button class="btn btn-add" onclick="addParking()">+ Add Parking Option</button>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">🏛️ Venue Lobby</div>
+        <div class="cms-card-body">
+          <div class="field-row">
+            <label>Lobby Section Heading</label>
+            <input type="text" id="venueGuide-lobbyHeading" />
+          </div>
+          <div class="field-row">
+            <label>Lobby Instructions</label>
+            <textarea id="venueGuide-lobbyText" rows="3"></textarea>
+            <div class="html-hint">Supports <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;br&gt;</code>. <a href="#" onclick="openGuide();return false;">Guide →</a></div>
+          </div>
+          <div class="field-row">
+            <label>Lobby Photo Caption</label>
+            <input type="text" id="venueGuide-lobbyCaption" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         WHAT TO PREPARE
+    =========================== -->
+    <div id="s-prepare" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">🧳 Items to Bring</div>
+        <div class="cms-card-body">
+          <div id="bring-list" class="list-container"></div>
+          <button class="btn btn-add" onclick="addBringItem()">+ Add Item</button>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">📚 Homework / Pre-Event Tasks</div>
+        <div class="cms-card-body">
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Prep Guide Button Label</label>
+              <input type="text" id="homework-prepGuideLabel" placeholder="📄 Attendee Prep Guide PDF" />
+            </div>
+            <div class="field-row">
+              <label>Prep Guide PDF Link</label>
+              <input type="url" id="homework-prepGuideLink" placeholder="https://drive.google.com/..." />
+            </div>
+          </div>
+          <hr class="field-sep" />
+          <div id="homework-list" class="list-container"></div>
+          <button class="btn btn-add" onclick="addHomeworkItem()">+ Add Task</button>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">👔 Dress Code</div>
+        <div class="cms-card-body">
+          <div class="field-grid-3">
+            <div class="field-row">
+              <label>Emoji</label>
+              <input type="text" id="dressCode-emoji" placeholder="👔" />
+            </div>
+            <div class="field-row">
+              <label>Dress Code Label</label>
+              <input type="text" id="dressCode-label" placeholder="Smart Casual" />
+            </div>
+            <div class="field-row">
+              <label>Note</label>
+              <input type="text" id="dressCode-note" placeholder="Bring a jacket..." />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         FAQ
+    =========================== -->
+    <div id="s-faq" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">❓ Frequently Asked Questions</div>
+        <div class="cms-card-body">
+          <div id="faq-list" class="list-container"></div>
+          <button class="btn btn-add" onclick="addFaqItem()">+ Add FAQ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         FOOTER & CONTACT
+    =========================== -->
+    <div id="s-footer" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">🔗 Contact &amp; Footer</div>
+        <div class="cms-card-body">
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Contact Button Text</label>
+              <input type="text" id="footer-contactText" placeholder="📞 Contact Us" />
+            </div>
+            <div class="field-row">
+              <label>Contact Button Link</label>
+              <input type="url" id="footer-contactLink" placeholder="https://wa.link/..." />
+            </div>
+            <div class="field-row">
+              <label>Brand Name</label>
+              <input type="text" id="footer-brandName" placeholder="Vertex Mastery Sdn Bhd" />
+            </div>
+            <div class="field-row">
+              <label>Copyright Text</label>
+              <input type="text" id="footer-copyright" placeholder="Copyright 2026. All Rights Reserved..." />
+            </div>
+            <div class="field-row">
+              <label>Page Title (browser tab)</label>
+              <input type="text" id="meta-pageTitle" placeholder="AI Implementation Bootcamp | Event Factsheet" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===========================
+         HTML GUIDE
+    =========================== -->
+    <div id="s-guide" class="section-panel">
+      <div class="cms-card">
+        <div class="cms-card-header">📖 Plain-English Formatting Guide</div>
+        <div class="cms-card-body">
+          <p style="font-size:13px;color:var(--text2);margin-bottom:20px;">
+            Some fields support a small set of HTML tags to format text. Here's what each tag does, with before/after examples.
+          </p>
+
+          <div class="guide-entry">
+            <div class="guide-tag">&lt;br&gt;</div>
+            <div class="guide-desc"><strong>Line break</strong> — forces the text onto a new line. Like pressing Enter.</div>
+            <div class="guide-example">
+              <div class="ex-label">You type</div>
+              <div class="ex-code">39-07, Menara EcoWorld @ BBCC,&lt;br&gt;2, Jln Hang Tuah,&lt;br&gt;55100 Kuala Lumpur</div>
+              <div class="ex-label" style="margin-top:8px;">Result on page</div>
+              <div class="ex-result">39-07, Menara EcoWorld @ BBCC,<br>2, Jln Hang Tuah,<br>55100 Kuala Lumpur</div>
+            </div>
+          </div>
+
+          <div class="guide-entry">
+            <div class="guide-tag">&lt;strong&gt;…&lt;/strong&gt;</div>
+            <div class="guide-desc"><strong>Bold text</strong> — makes words stand out visually. Use for important details like times, floor numbers, or names.</div>
+            <div class="guide-example">
+              <div class="ex-label">You type</div>
+              <div class="ex-code">Head to &lt;strong&gt;Level 39, Unit 07&lt;/strong&gt;</div>
+              <div class="ex-label" style="margin-top:8px;">Result on page</div>
+              <div class="ex-result">Head to <strong>Level 39, Unit 07</strong></div>
+            </div>
+          </div>
+
+          <div class="guide-entry">
+            <div class="guide-tag">&lt;em&gt;…&lt;/em&gt;</div>
+            <div class="guide-desc"><em>Italic text</em> — a softer emphasis. Good for optional notes or side remarks.</div>
+            <div class="guide-example">
+              <div class="ex-label">You type</div>
+              <div class="ex-code">Headphones &lt;em&gt;(optional — some demos involve audio)&lt;/em&gt;</div>
+              <div class="ex-label" style="margin-top:8px;">Result on page</div>
+              <div class="ex-result">Headphones <em>(optional — some demos involve audio)</em></div>
+            </div>
+          </div>
+
+          <div class="guide-entry">
+            <div class="guide-tag">Combining tags</div>
+            <div class="guide-desc">You can mix tags — bold + italic, or bold + line break — by nesting them.</div>
+            <div class="guide-example">
+              <div class="ex-label">You type</div>
+              <div class="ex-code">Registration: &lt;strong&gt;9:30 AM&lt;/strong&gt;&lt;br&gt;Event: &lt;strong&gt;10:00 AM – 6:00 PM&lt;/strong&gt;</div>
+              <div class="ex-label" style="margin-top:8px;">Result on page</div>
+              <div class="ex-result">Registration: <strong>9:30 AM</strong><br>Event: <strong>10:00 AM – 6:00 PM</strong></div>
+            </div>
+          </div>
+
+          <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-top:8px;">
+            <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:6px;">⚠️ Fields that support HTML</div>
+            <ul style="font-size:13px;color:var(--text2);padding-left:18px;line-height:1.8;">
+              <li>Hero Tagline</li>
+              <li>Venue Address</li>
+              <li>Lobby Instructions</li>
+              <li>Parking instructions (per item)</li>
+              <li>Homework item descriptions</li>
+              <li>Items to Bring text</li>
+              <li>FAQ answers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content-area -->
+</div><!-- end main -->
+
+<!-- HTML Guide Modal (shortcut from hints) -->
+<div id="html-guide-modal">
+  <div id="html-guide-box">
+    <h2>📖 HTML Formatting Guide</h2>
+    <div class="guide-sub">Quick reference for fields that support HTML</div>
+    <div class="guide-entry">
+      <div class="guide-tag">&lt;br&gt;</div>
+      <div class="guide-desc">Line break — forces a new line.</div>
+      <div class="guide-example">
+        <div class="ex-label">Input</div><div class="ex-code">Line one&lt;br&gt;Line two</div>
+        <div class="ex-label" style="margin-top:8px;">Output</div><div class="ex-result">Line one<br>Line two</div>
+      </div>
+    </div>
+    <div class="guide-entry">
+      <div class="guide-tag">&lt;strong&gt;…&lt;/strong&gt;</div>
+      <div class="guide-desc">Bold text — for key details like times or floor numbers.</div>
+      <div class="guide-example">
+        <div class="ex-label">Input</div><div class="ex-code">Go to &lt;strong&gt;Level 39&lt;/strong&gt;</div>
+        <div class="ex-label" style="margin-top:8px;">Output</div><div class="ex-result">Go to <strong>Level 39</strong></div>
+      </div>
+    </div>
+    <div class="guide-entry">
+      <div class="guide-tag">&lt;em&gt;…&lt;/em&gt;</div>
+      <div class="guide-desc">Italic text — for optional notes or soft remarks.</div>
+      <div class="guide-example">
+        <div class="ex-label">Input</div><div class="ex-code">Headphones &lt;em&gt;(optional)&lt;/em&gt;</div>
+        <div class="ex-label" style="margin-top:8px;">Output</div><div class="ex-result">Headphones <em>(optional)</em></div>
+      </div>
+    </div>
+    <div class="guide-close">
+      <button class="btn btn-secondary" onclick="closeGuide()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+//  STATE
+// ============================================================
+var cfg = {};
+
+// ============================================================
+//  NAV
+// ============================================================
+function showSection(id) {
+  document.querySelectorAll('.section-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  var idx = ['s-settings','s-hero','s-details','s-venue','s-prepare','s-faq','s-footer','s-guide'].indexOf(id);
+  document.querySelectorAll('.nav-item')[idx].classList.add('active');
+  var titles = { 's-settings':'Settings', 's-hero':'Hero', 's-details':'Event Details', 's-venue':'Venue Guide', 's-prepare':'What to Prepare', 's-faq':'FAQ', 's-footer':'Footer & Contact', 's-guide':'HTML Guide' };
+  document.getElementById('topbar-title').textContent = titles[id] || '';
+}
+
+// ============================================================
+//  TOAST
+// ============================================================
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + (type||'');
+  setTimeout(function(){ t.className = ''; }, 4000);
+}
+
+// ============================================================
+//  HTML GUIDE MODAL
+// ============================================================
+function openGuide(){ document.getElementById('html-guide-modal').classList.add('open'); }
+function closeGuide(){ document.getElementById('html-guide-modal').classList.remove('open'); }
+document.getElementById('html-guide-modal').addEventListener('click', function(e){
+  if(e.target === this) closeGuide();
+});
+
+// ============================================================
+//  GITHUB SETTINGS (localStorage)
+// ============================================================
+function saveGitHubSettings() {
+  localStorage.setItem('cms-gh-token',  document.getElementById('cfg-gh-token').value.trim());
+  localStorage.setItem('cms-gh-repo',   document.getElementById('cfg-gh-repo').value.trim());
+  localStorage.setItem('cms-gh-branch', document.getElementById('cfg-gh-branch').value.trim() || 'main');
+  localStorage.setItem('cms-gh-path',   document.getElementById('cfg-gh-path').value.trim() || 'ck-config.json');
+  showToast('Connection settings saved ✓', 'success');
+}
+
+function loadGitHubSettings() {
+  document.getElementById('cfg-gh-token').value  = localStorage.getItem('cms-gh-token') || '';
+  document.getElementById('cfg-gh-repo').value   = localStorage.getItem('cms-gh-repo') || 'LizYeap/ai-bootcamp-factsheet';
+  document.getElementById('cfg-gh-branch').value = localStorage.getItem('cms-gh-branch') || 'main';
+  document.getElementById('cfg-gh-path').value   = localStorage.getItem('cms-gh-path') || 'ck-config.json';
+}
+
+function getGHSettings() {
+  return {
+    token:  localStorage.getItem('cms-gh-token') || '',
+    repo:   localStorage.getItem('cms-gh-repo')  || '',
+    branch: localStorage.getItem('cms-gh-branch') || 'main',
+    path:   localStorage.getItem('cms-gh-path')   || 'ck-config.json'
+  };
+}
+
+async function testConnection() {
+  var s = getGHSettings();
+  if (!s.token || !s.repo) { showToast('Enter token and repo first', 'error'); return; }
+  try {
+    var r = await fetch('https://api.github.com/repos/' + s.repo, { headers: { Authorization: 'token ' + s.token } });
+    if (r.ok) showToast('✅ Connection OK — repo found!', 'success');
+    else showToast('❌ Failed: ' + r.status + ' ' + r.statusText, 'error');
+  } catch(e) { showToast('❌ Network error: ' + e.message, 'error'); }
+}
+
+// ============================================================
+//  LOAD CONFIG FROM GITHUB
+// ============================================================
+async function loadFromGitHub() {
+  var s = getGHSettings();
+  if (!s.token || !s.repo) { showToast('Set GitHub credentials in Settings first', 'error'); return; }
+  showStatus('saving', 'Loading…');
+  try {
+    var url = 'https://api.github.com/repos/' + s.repo + '/contents/' + s.path + '?ref=' + s.branch;
+    var r = await fetch(url, { headers: { Authorization: 'token ' + s.token, Accept: 'application/vnd.github.v3+json' } });
+    if (!r.ok) throw new Error(r.status + ' ' + r.statusText);
+    var data = await r.json();
+    var json = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    cfg = json;
+    cfg.__sha = data.sha; // store for update
+    populateFields(cfg);
+    showStatus('success', 'Loaded ✓');
+    showToast('Config loaded from GitHub ✓', 'success');
+  } catch(e) {
+    showStatus('error', 'Error');
+    showToast('Failed to load: ' + e.message, 'error');
+  }
+}
+
+// ============================================================
+//  POPULATE FIELDS FROM CONFIG
+// ============================================================
+function populateFields(c) {
+  // meta
+  setVal('meta-pageTitle', c.meta && c.meta.pageTitle);
+  // hero
+  if (c.hero) {
+    setVal('hero-badgePill', c.hero.badgePill);
+    setVal('hero-title', c.hero.title);
+    setVal('hero-tagline', c.hero.tagline);
+    setVal('hero-ctaText', c.hero.ctaText);
+    setVal('hero-ctaLink', c.hero.ctaLink);
+  }
+  // pills
+  if (c.pills) {
+    setVal('pills-date', c.pills.date);
+    setVal('pills-time', c.pills.time);
+    setVal('pills-location', c.pills.location);
+    setVal('pills-bonusSession', c.pills.bonusSession);
+    setVal('pills-stickyDate', c.pills.stickyDate);
+    setVal('pills-stickyTime', c.pills.stickyTime);
+    setVal('pills-stickyLocation', c.pills.stickyLocation);
+  }
+  // countdown
+  setVal('countdown-targetDate', c.countdown && c.countdown.targetDate);
+  // details
+  if (c.details) {
+    setVal('details-venueName', c.details.venueName);
+    setVal('details-venueAddress', c.details.venueAddress);
+    setVal('details-googleMapsLink', c.details.googleMapsLink);
+    setVal('details-wazeLink', c.details.wazeLink);
+    setVal('details-registrationTime', c.details.registrationTime);
+    setVal('details-eventTime', c.details.eventTime);
+    setVal('details-bonusTime', c.details.bonusTime);
+  }
+  // venue guide
+  if (c.venueGuide) {
+    setVal('venueGuide-grabHeading', c.venueGuide.grabHeading);
+    setVal('venueGuide-grabDropoff', c.venueGuide.grabDropoff);
+    setVal('venueGuide-drivingHeading', c.venueGuide.drivingHeading);
+    setVal('venueGuide-lobbyHeading', c.venueGuide.lobbyHeading);
+    setVal('venueGuide-lobbyText', c.venueGuide.lobbyText);
+    setVal('venueGuide-lobbyCaption', c.venueGuide.lobbyCaption);
+    renderParkingEditor(c.venueGuide.parking || []);
+  }
+  // bring
+  renderBringEditor(c.whatToBring || []);
+  // homework
+  if (c.homework) {
+    setVal('homework-prepGuideLabel', c.homework.prepGuideLabel);
+    setVal('homework-prepGuideLink', c.homework.prepGuideLink);
+    renderHomeworkEditor(c.homework.items || []);
+  }
+  // dress code
+  if (c.dressCode) {
+    setVal('dressCode-emoji', c.dressCode.emoji);
+    setVal('dressCode-label', c.dressCode.label);
+    setVal('dressCode-note', c.dressCode.note);
+  }
+  // faq
+  renderFaqEditor(c.faq || []);
+  // footer
+  if (c.footer) {
+    setVal('footer-contactLink', c.footer.contactLink);
+    setVal('footer-contactText', c.footer.contactText);
+    setVal('footer-brandName', c.footer.brandName);
+    setVal('footer-copyright', c.footer.copyright);
+  }
+}
+
+function setVal(id, val) {
+  var el = document.getElementById(id);
+  if (el && val !== undefined && val !== null) el.value = val;
+}
+
+// ============================================================
+//  LIST EDITORS — PARKING
+// ============================================================
+function renderParkingEditor(items) {
+  var cont = document.getElementById('parking-list');
+  cont.innerHTML = '';
+  items.forEach(function(item, i) { cont.appendChild(buildParkingItem(item, i)); });
+}
+
+function buildParkingItem(item, i) {
+  var div = document.createElement('div');
+  div.className = 'list-item';
+  div.dataset.idx = i;
+
+  var instrVal = (item.instructions || []).join('\n');
+  var ratesHtml = (item.rates || []).map(function(r, ri) {
+    return '<div class="rate-row">' +
+      '<input type="text" class="rate-label" placeholder="e.g. First hour" value="' + esc(r.label) + '" />' +
+      '<input type="text" class="rate-value" placeholder="e.g. RM 3" value="' + esc(r.value) + '" />' +
+      '<button class="btn btn-danger btn-sm" onclick="removeRateRow(this)">✕</button>' +
+    '</div>';
+  }).join('');
+
+  div.innerHTML = '<div class="list-item-header">' +
+    '<span class="list-item-label">Option ' + (i+1) + '</span>' +
+    '<button class="btn btn-danger btn-sm" onclick="removeParkingItem(this)">Remove</button>' +
+  '</div>' +
+  '<div class="list-item-fields">' +
+    '<div class="field-row"><label>Parking Name</label>' +
+    '<input type="text" class="p-name" value="' + esc(item.name||'') + '" /></div>' +
+    '<div class="field-row"><label>Instructions (one per line, HTML ok)</label>' +
+    '<textarea class="p-instructions" rows="3">' + esc(instrVal) + '</textarea>' +
+    '<div class="html-hint">Use <code>&lt;strong&gt;</code> for bold. One instruction per line. <a href="#" onclick="openGuide();return false;">Guide →</a></div></div>' +
+    '<div class="field-row"><label>Photo Caption <span style="font-weight:400;text-transform:none;color:var(--text3)">(first option only, uses embedded photo)</span></label>' +
+    '<input type="text" class="p-photoCaption" value="' + esc(item.photoCaption||'') + '" /></div>' +
+    '<div class="rates-editor"><div class="rates-editor-label">Rates</div>' +
+    '<div class="rate-rows">' + ratesHtml + '</div>' +
+    '<button class="btn btn-add btn-sm" onclick="addRateRow(this)" style="margin-top:6px;width:auto;padding:4px 12px;">+ Add Rate Row</button></div>' +
+    '<div class="field-grid-2">' +
+    '<div class="field-row"><label>Directory Video Link</label>' +
+    '<input type="url" class="p-videoLink" value="' + esc(item.videoLink||'') + '" /></div>' +
+    '<div class="field-row"><label>Video Button Label</label>' +
+    '<input type="text" class="p-videoLabel" value="' + esc(item.videoLabel||'Directory Video') + '" /></div>' +
+    '</div>' +
+  '</div>';
+  return div;
+}
+
+function addParking() {
+  var cont = document.getElementById('parking-list');
+  var i = cont.children.length;
+  cont.appendChild(buildParkingItem({ name:'', instructions:[], rates:[], videoLink:'', videoLabel:'Directory Video' }, i));
+}
+function removeParkingItem(btn) { btn.closest('.list-item').remove(); renumberList('parking-list', 'Option'); }
+
+function addRateRow(btn) {
+  var rows = btn.previousElementSibling;
+  var div = document.createElement('div');
+  div.className = 'rate-row';
+  div.innerHTML = '<input type="text" class="rate-label" placeholder="e.g. First hour" />' +
+    '<input type="text" class="rate-value" placeholder="e.g. RM 3" />' +
+    '<button class="btn btn-danger btn-sm" onclick="removeRateRow(this)">✕</button>';
+  rows.appendChild(div);
+}
+function removeRateRow(btn) { btn.closest('.rate-row').remove(); }
+
+// ============================================================
+//  LIST EDITORS — BRING
+// ============================================================
+function renderBringEditor(items) {
+  var cont = document.getElementById('bring-list');
+  cont.innerHTML = '';
+  items.forEach(function(item, i){ cont.appendChild(buildBringItem(item, i)); });
+}
+function buildBringItem(item, i) {
+  var div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<div class="list-item-header"><span class="list-item-label">Item ' + (i+1) + '</span>' +
+    '<button class="btn btn-danger btn-sm" onclick="removeBringItem(this)">Remove</button></div>' +
+    '<div class="field-grid-2 list-item-fields">' +
+    '<div class="field-row"><label>Emoji</label><input type="text" class="b-emoji" value="' + esc(item.emoji||'') + '" style="width:80px" /></div>' +
+    '<div class="field-row"><label>Text (HTML supported)</label><input type="text" class="b-text" value="' + esc(item.text||'') + '" />' +
+    '<div class="html-hint"><a href="#" onclick="openGuide();return false;">Formatting guide →</a></div></div>' +
+    '</div>';
+  return div;
+}
+function addBringItem() {
+  var cont = document.getElementById('bring-list');
+  cont.appendChild(buildBringItem({ emoji:'', text:'' }, cont.children.length));
+}
+function removeBringItem(btn) { btn.closest('.list-item').remove(); renumberList('bring-list','Item'); }
+
+// ============================================================
+//  LIST EDITORS — HOMEWORK
+// ============================================================
+function renderHomeworkEditor(items) {
+  var cont = document.getElementById('homework-list');
+  cont.innerHTML = '';
+  items.forEach(function(item, i){ cont.appendChild(buildHomeworkItem(item, i)); });
+}
+function buildHomeworkItem(item, i) {
+  var div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<div class="list-item-header"><span class="list-item-label">Task ' + (i+1) + '</span>' +
+    '<button class="btn btn-danger btn-sm" onclick="removeHomeworkItem(this)">Remove</button></div>' +
+    '<div class="list-item-fields">' +
+    '<div class="field-grid-2">' +
+    '<div class="field-row"><label>Icon / Emoji</label><input type="text" class="hw-icon" value="' + esc(item.icon||'') + '" style="width:100px" /></div>' +
+    '<div class="field-row"><label>Title</label><input type="text" class="hw-title" value="' + esc(item.title||'') + '" /></div>' +
+    '</div>' +
+    '<div class="field-row"><label>Description (HTML supported)</label>' +
+    '<textarea class="hw-desc" rows="2">' + esc(item.description||'') + '</textarea>' +
+    '<div class="html-hint"><a href="#" onclick="openGuide();return false;">Formatting guide →</a></div></div>' +
+    '</div>';
+  return div;
+}
+function addHomeworkItem() {
+  var cont = document.getElementById('homework-list');
+  cont.appendChild(buildHomeworkItem({ icon:'', title:'', description:'' }, cont.children.length));
+}
+function removeHomeworkItem(btn) { btn.closest('.list-item').remove(); renumberList('homework-list','Task'); }
+
+// ============================================================
+//  LIST EDITORS — FAQ
+// ============================================================
+function renderFaqEditor(items) {
+  var cont = document.getElementById('faq-list');
+  cont.innerHTML = '';
+  items.forEach(function(item, i){ cont.appendChild(buildFaqItem(item, i)); });
+}
+function buildFaqItem(item, i) {
+  var div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<div class="list-item-header"><span class="list-item-label">Q' + (i+1) + '</span>' +
+    '<button class="btn btn-danger btn-sm" onclick="removeFaqItem(this)">Remove</button></div>' +
+    '<div class="list-item-fields">' +
+    '<div class="field-row"><label>Question</label><input type="text" class="faq-q" value="' + esc(item.question||'') + '" /></div>' +
+    '<div class="field-row"><label>Answer (HTML supported)</label>' +
+    '<textarea class="faq-a" rows="3">' + esc(item.answer||'') + '</textarea>' +
+    '<div class="html-hint"><a href="#" onclick="openGuide();return false;">Formatting guide →</a></div></div>' +
+    '</div>';
+  return div;
+}
+function addFaqItem() {
+  var cont = document.getElementById('faq-list');
+  cont.appendChild(buildFaqItem({ question:'', answer:'' }, cont.children.length));
+}
+function removeFaqItem(btn) { btn.closest('.list-item').remove(); renumberList('faq-list','Q'); }
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renumberList(containerId, prefix) {
+  var cont = document.getElementById(containerId);
+  Array.from(cont.children).forEach(function(item, i) {
+    var lbl = item.querySelector('.list-item-label');
+    if (lbl) lbl.textContent = prefix + ' ' + (i + 1);
+  });
+}
+
+// ============================================================
+//  READ FIELDS → BUILD CONFIG OBJECT
+// ============================================================
+function buildConfig() {
+  var c = {};
+
+  c.meta = { pageTitle: gv('meta-pageTitle') };
+
+  c.hero = {
+    badgePill: gv('hero-badgePill'),
+    title:     gv('hero-title'),
+    tagline:   gv('hero-tagline'),
+    ctaText:   gv('hero-ctaText'),
+    ctaLink:   gv('hero-ctaLink')
+  };
+
+  c.pills = {
+    date:           gv('pills-date'),
+    time:           gv('pills-time'),
+    location:       gv('pills-location'),
+    bonusSession:   gv('pills-bonusSession'),
+    stickyDate:     gv('pills-stickyDate'),
+    stickyTime:     gv('pills-stickyTime'),
+    stickyLocation: gv('pills-stickyLocation')
+  };
+
+  c.countdown = { targetDate: gv('countdown-targetDate') };
+
+  c.details = {
+    venueName:       gv('details-venueName'),
+    venueAddress:    gv('details-venueAddress'),
+    googleMapsLink:  gv('details-googleMapsLink'),
+    wazeLink:        gv('details-wazeLink'),
+    registrationTime: gv('details-registrationTime'),
+    eventTime:       gv('details-eventTime'),
+    bonusTime:       gv('details-bonusTime')
+  };
+
+  c.venueGuide = {
+    grabHeading:    gv('venueGuide-grabHeading'),
+    grabDropoff:    gv('venueGuide-grabDropoff'),
+    drivingHeading: gv('venueGuide-drivingHeading'),
+    lobbyHeading:   gv('venueGuide-lobbyHeading'),
+    lobbyText:      gv('venueGuide-lobbyText'),
+    lobbyCaption:   gv('venueGuide-lobbyCaption'),
+    parking: readParkingList()
+  };
+
+  c.whatToBring = readBringList();
+
+  c.homework = {
+    prepGuideLink:  gv('homework-prepGuideLink'),
+    prepGuideLabel: gv('homework-prepGuideLabel'),
+    items: readHomeworkList()
+  };
+
+  c.dressCode = {
+    emoji: gv('dressCode-emoji'),
+    label: gv('dressCode-label'),
+    note:  gv('dressCode-note')
+  };
+
+  c.faq = readFaqList();
+
+  c.footer = {
+    contactLink: gv('footer-contactLink'),
+    contactText: gv('footer-contactText'),
+    brandName:   gv('footer-brandName'),
+    copyright:   gv('footer-copyright')
+  };
+
+  return c;
+}
+
+function gv(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+function readParkingList() {
+  return Array.from(document.querySelectorAll('#parking-list .list-item')).map(function(item) {
+    var instrRaw = item.querySelector('.p-instructions').value;
+    var instructions = instrRaw.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+    var rates = Array.from(item.querySelectorAll('.rate-row')).map(function(row) {
+      return { label: row.querySelector('.rate-label').value, value: row.querySelector('.rate-value').value };
+    });
+    return {
+      name:         item.querySelector('.p-name').value,
+      instructions: instructions,
+      photoCaption: item.querySelector('.p-photoCaption').value,
+      rates:        rates,
+      videoLink:    item.querySelector('.p-videoLink').value,
+      videoLabel:   item.querySelector('.p-videoLabel').value
+    };
+  });
+}
+
+function readBringList() {
+  return Array.from(document.querySelectorAll('#bring-list .list-item')).map(function(item) {
+    return { emoji: item.querySelector('.b-emoji').value, text: item.querySelector('.b-text').value };
+  });
+}
+
+function readHomeworkList() {
+  return Array.from(document.querySelectorAll('#homework-list .list-item')).map(function(item) {
+    return { icon: item.querySelector('.hw-icon').value, title: item.querySelector('.hw-title').value, description: item.querySelector('.hw-desc').value };
+  });
+}
+
+function readFaqList() {
+  return Array.from(document.querySelectorAll('#faq-list .list-item')).map(function(item) {
+    return { question: item.querySelector('.faq-q').value, answer: item.querySelector('.faq-a').value };
+  });
+}
+
+// ============================================================
+//  STATUS INDICATOR
+// ============================================================
+function showStatus(type, msg) {
+  var el = document.getElementById('save-status');
+  el.className = type;
+  el.textContent = msg;
+}
+
+// ============================================================
+//  SAVE → GITHUB
+// ============================================================
+async function saveConfig() {
+  var s = getGHSettings();
+  if (!s.token || !s.repo) {
+    showToast('Set GitHub credentials in Settings first', 'error');
+    showSection('s-settings');
+    return;
+  }
+
+  var newCfg = buildConfig();
+  var json = JSON.stringify(newCfg, null, 2);
+  var encoded = btoa(unescape(encodeURIComponent(json)));
+
+  showStatus('saving', '⏳ Saving…');
+
+  try {
+    // Get current SHA if not already loaded
+    var sha = cfg.__sha;
+    if (!sha) {
+      var getUrl = 'https://api.github.com/repos/' + s.repo + '/contents/' + s.path + '?ref=' + s.branch;
+      var getR = await fetch(getUrl, { headers: { Authorization: 'token ' + s.token, Accept: 'application/vnd.github.v3+json' } });
+      if (getR.ok) { var gd = await getR.json(); sha = gd.sha; }
+    }
+
+    var body = { message: 'CMS update: ' + new Date().toISOString().slice(0,16).replace('T',' '), content: encoded, branch: s.branch };
+    if (sha) body.sha = sha;
+
+    var putUrl = 'https://api.github.com/repos/' + s.repo + '/contents/' + s.path;
+    var putR = await fetch(putUrl, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + s.token, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (!putR.ok) {
+      var errData = await putR.json();
+      throw new Error((errData.message || putR.statusText));
+    }
+
+    var putData = await putR.json();
+    cfg.__sha = putData.content && putData.content.sha;
+    showStatus('success', '✅ Saved & deployed');
+    showToast('✅ Saved! Vercel will redeploy in ~30 seconds.', 'success');
+  } catch(e) {
+    showStatus('error', '❌ ' + e.message);
+    showToast('❌ Save failed: ' + e.message, 'error');
+  }
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+loadGitHubSettings();
+// Try to load config from same-origin /ck-config.json on page load
+fetch('/ck-config.json?_=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data){ cfg = data; populateFields(cfg); showToast('Config loaded from site ✓', 'success'); })
+  .catch(function(){ /* not available - user will load from GitHub manually */ });
+</script>
+</body>
+</html>

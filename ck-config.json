@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "pageTitle": "AI Implementation Bootcamp | Event Factsheet"
+  },
+  "hero": {
+    "badgePill": "Event Factsheet",
+    "title": "AI Implementation Bootcamp",
+    "tagline": "\"Build practical AI workforces for every role in your company\"",
+    "ctaText": "Register Now — It's Free",
+    "ctaLink": "#"
+  },
+  "pills": {
+    "date": "📅 29 June – 1 July 2026  ·  Monday to Wednesday",
+    "time": "🕙 10:00 AM – 6:00 PM",
+    "location": "📍 Menara EcoWorld, KL",
+    "bonusSession": "⭐ Bonus Session: 7:00 PM – 9:00 PM",
+    "stickyDate": "📅 29 June – 1 July 2026",
+    "stickyTime": "🕙 10AM – 6PM",
+    "stickyLocation": "📍 Menara EcoWorld, KL"
+  },
+  "countdown": {
+    "targetDate": "2026-06-29T10:00:00+08:00"
+  },
+  "details": {
+    "venueName": "Vertex Mastery Sdn Bhd",
+    "venueAddress": "39-07, Menara EcoWorld @ BBCC,<br>2, Jln Hang Tuah, Bukit Bintang,<br>55100 Kuala Lumpur",
+    "googleMapsLink": "https://maps.app.goo.gl/WVbqtnF2PaW893FC7",
+    "wazeLink": "https://ul.waze.com/ul?ll=3.13940800%2C101.70973100&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location",
+    "dateValue": "<strong>29 June – 1 July 2026</strong><br><span style=\"color:var(--text-accent);font-style:italic;\">Monday to Wednesday</span>",
+    "registrationTime": "9:30 AM",
+    "eventTime": "10:00 AM – 6:00 PM",
+    "bonusTime": "7:00 PM – 9:00 PM"
+  },
+  "venueGuide": {
+    "grabHeading": "If You Are Taking Grab To The Venue",
+    "grabDropoff": "Menara EcoWorld",
+    "drivingHeading": "If You Are Driving To The Venue",
+    "parking": [
+      {
+        "name": "Lalaport BBCC",
+        "instructions": ["Park at <strong>Zone C (Blue Zone)</strong>", "Pillar number <strong>C1 – C4</strong>"],
+        "photoCaption": "Park at Zone C (Blue Zone), pillars C1–C4",
+        "rates": [
+          {"label": "First 3 hours", "value": "Free"},
+          {"label": "Subsequent hour", "value": "RM 3"},
+          {"label": "After 5:00 PM", "value": "Free"},
+          {"label": "Max per day", "value": "RM 30"}
+        ],
+        "videoLink": "https://drive.google.com/file/d/1qBIPrbqQzve_NeG4iKZavrkVCfLPh3DJ/view",
+        "videoLabel": "Directory Video"
+      },
+      {
+        "name": "The Labs @ BBCC",
+        "instructions": ["Park at <strong>B3</strong>, near <strong>Lift A</strong>"],
+        "photoCaption": "",
+        "rates": [
+          {"label": "First hour", "value": "RM 3"},
+          {"label": "Subsequent hour", "value": "RM 2"},
+          {"label": "Max per day", "value": "RM 40"}
+        ],
+        "videoLink": "https://drive.google.com/file/d/1oMJFtL8d2HX7w0G1q9xJnEQnNaeUMid6/view",
+        "videoLabel": "Directory Video"
+      }
+    ],
+    "lobbyHeading": "When You Arrive At The Venue Lobby",
+    "lobbyText": "Head to the reception counter to register. Mention to the security guards that you are going up to <strong>Level 39, Unit 07</strong>.",
+    "lobbyCaption": "Building lobby — head to the reception counter upon arrival"
+  },
+  "whatToBring": [
+    {"emoji": "💻", "text": "Your laptop (Mac or Windows), fully charged"},
+    {"emoji": "🔌", "text": "Laptop charger"},
+    {"emoji": "🎧", "text": "Headphones <em>(optional — some demos involve audio)</em>"},
+    {"emoji": "💧", "text": "Water Bottle with Lid"},
+    {"emoji": "🧥", "text": "Jacket <em>(Highly recommended! The room will be cold.)</em>"},
+    {"emoji": "🧠", "text": "An open mind — these tools can do things you've never seen"}
+  ],
+  "homework": {
+    "prepGuideLink": "https://drive.google.com/file/d/1nh_oYJ1IC6D7dZ9v13_tW7nIE2rZPkg8/view?usp=sharing",
+    "prepGuideLabel": "📄 Attendee Prep Guide PDF",
+    "items": [
+      {"icon": "1️⃣", "title": "Subscribe to a paid Claude plan", "description": "Pro ($20/mo) minimum. Max ($100/mo) recommended for the best Chrome experience."},
+      {"icon": "2️⃣", "title": "Install Claude Desktop", "description": "Download from claude.com/download — choose your OS (Mac or Windows)."},
+      {"icon": "3️⃣", "title": "Install Claude in Chrome", "description": "Find it in the Chrome Web Store. Pin the extension to your toolbar."},
+      {"icon": "4️⃣", "title": "Prepare a folder of real work files", "description": "Pick a folder relevant to your job. Back it up first — we'll be using AI tools that can modify files."}
+    ]
+  },
+  "dressCode": {
+    "emoji": "👔",
+    "label": "Smart Casual",
+    "note": "Bring a jacket along as the room will be cold."
+  },
+  "faq": [
+    {
+      "question": "Can I transfer my ticket to someone else?",
+      "answer": "Yes. Tickets are non-refundable but transferable within the same company. Just inform us 5 working days before the workshop so we can update your attendee information."
+    },
+    {
+      "question": "Is there any translation service?",
+      "answer": "The workshop will be conducted entirely in English, and no translation will be provided."
+    },
+    {
+      "question": "Is the workshop HRDC Claimable?",
+      "answer": "Yes. AI Implementation Bootcamp is HRD Corp claimable under the HRD Corp training schemes, subject to your company's eligibility and levy balance."
+    }
+  ],
+  "footer": {
+    "contactLink": "https://wa.link/f0ji8v",
+    "contactText": "📞 Contact Us",
+    "brandName": "Vertex Mastery Sdn Bhd",
+    "copyright": "Copyright 2026. All Rights Reserved, Vertex Mastery Sdn Bhd."
+  }
+}
