@@ -681,9 +681,40 @@
       margin-top: 24px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .prepare-section-title:first-child { margin-top: 0; }
+
+    .prep-guide-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,228,153,0.45);
+      background: rgba(255,228,153,0.1);
+      color: #ffe499;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      margin-left: auto;
+    }
+    .prep-guide-btn:hover { background: rgba(255,228,153,0.2); border-color: rgba(255,228,153,0.7); }
+
+    [data-theme="light"] .prep-guide-btn {
+      background: rgba(0,10,102,0.08);
+      border-color: rgba(0,10,102,0.35);
+      color: #000a66;
+    }
+    [data-theme="light"] .prep-guide-btn:hover { background: rgba(0,10,102,0.15); }
 
     .items-list {
       list-style: none;
@@ -1151,7 +1182,7 @@
             <li><span class="item-emoji">🧠</span><span>An open mind — these tools can do things you've never seen</span></li>
           </ul>
 
-          <div class="prepare-section-title">Homework</div>
+          <div class="prepare-section-title">Homework <a href="https://drive.google.com/file/d/1nh_oYJ1IC6D7dZ9v13_tW7nIE2rZPkg8/view?usp=sharing" target="_blank" rel="noopener" class="prep-guide-btn">📄 Attendee Prep Guide PDF</a></div>
           <ul class="homework-list">
             <li class="homework-item">
               <span class="hw-num">1️⃣</span>
