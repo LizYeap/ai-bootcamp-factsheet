@@ -1317,7 +1317,10 @@
           return;
         }
 
-        var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+        // Calendar-day count (midnight → midnight) so "June 23 → June 29 = 6 days"
+        var nowMidnight    = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var targetMidnight = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+        var days  = Math.max(0, Math.round((targetMidnight - nowMidnight) / (1000 * 60 * 60 * 24)));
         var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         var secs  = Math.floor((diff % (1000 * 60)) / 1000);
