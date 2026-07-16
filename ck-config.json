@@ -120,7 +120,7 @@
     }
   ],
   "homework": {
-    "prepGuideLink": "https://drive.google.com/file/d/1nh_oYJ1IC6D7dZ9v13_tW7nIE2rZPkg8/view?usp=sharing",
+    "prepGuideLink": "https://drive.google.com/file/d/1TiUXYApvDNKysBagYhDjpzie-DzHmEKi/view?usp=drive_link",
     "prepGuideLabel": "📄 Attendee Prep Guide PDF",
     "items": [
       {
@@ -140,6 +140,11 @@
       },
       {
         "icon": "4️⃣",
+        "title": "Set up your building tools",
+        "description": "Pick a folder relevant to your job. Back it up first — we'll be using AI tools that can modify files.\n- GitHub\n- Supabase\n- Vercel"
+      },
+      {
+        "icon": "5️⃣",
         "title": "Prepare a folder of real work files",
         "description": "Pick a folder relevant to your job. Back it up first — we'll be using AI tools that can modify files."
       }
