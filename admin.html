@@ -1176,11 +1176,14 @@ async function saveConfig() {
 //  INIT
 // ============================================================
 loadGitHubSettings();
-// Try to load config from same-origin /ck-config.json on page load
-fetch('/ck-config.json?_=' + Date.now())
-  .then(function(r){ return r.json(); })
-  .then(function(data){ cfg = data; populateFields(cfg); showToast('Config loaded from site ✓', 'success'); })
-  .catch(function(){ /* not available - user will load from GitHub manually */ });
+// Always load from GitHub on startup so we get the latest saved version,
+// not the potentially-stale Vercel CDN copy.
+(function() {
+  var s = getGHSettings();
+  if (s.token && s.repo) {
+    loadFromGitHub();
+  }
+})();
 </script>
 </body>
 </html>
