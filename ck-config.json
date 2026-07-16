@@ -10,16 +10,16 @@
     "ctaLink": "#"
   },
   "pills": {
-    "date": "📅 29 June – 1 July 2026  ·  Monday to Wednesday",
+    "date": "📅 28 - 30 August 2026  ·  Friday to Sunday",
     "time": "🕙 10:00 AM – 6:00 PM",
     "location": "📍 Menara EcoWorld, KL",
     "bonusSession": "⭐ Bonus Session: 7:00 PM – 9:00 PM",
-    "stickyDate": "📅 29 June – 1 July 2026",
+    "stickyDate": "📅 28 - 30 August 2026",
     "stickyTime": "🕙 10AM – 6PM",
     "stickyLocation": "📍 Menara EcoWorld, KL"
   },
   "countdown": {
-    "targetDate": "2026-06-29T10:00:00+08:00"
+    "targetDate": "2026-08-28T10:00:00+08:00"
   },
   "details": {
     "venueName": "Vertex Mastery Sdn Bhd",
