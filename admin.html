@@ -366,6 +366,17 @@
             </div>
           </div>
           <hr class="field-sep" />
+          <div class="field-grid-2">
+            <div class="field-row">
+              <label>Event Date</label>
+              <input type="text" id="details-eventDate" placeholder="29 June – 1 July 2026" />
+            </div>
+            <div class="field-row">
+              <label>Event Date Sub-line</label>
+              <input type="text" id="details-eventDateSub" placeholder="Monday to Wednesday" />
+            </div>
+          </div>
+          <hr class="field-sep" />
           <div class="field-grid-3">
             <div class="field-row">
               <label>Registration Time</label>
@@ -779,6 +790,8 @@ function populateFields(c) {
     setVal('details-venueAddress', c.details.venueAddress);
     setVal('details-googleMapsLink', c.details.googleMapsLink);
     setVal('details-wazeLink', c.details.wazeLink);
+    setVal('details-eventDate', c.details.eventDate);
+    setVal('details-eventDateSub', c.details.eventDateSub);
     setVal('details-registrationTime', c.details.registrationTime);
     setVal('details-eventTime', c.details.eventTime);
     setVal('details-bonusTime', c.details.bonusTime);
@@ -1018,6 +1031,8 @@ function buildConfig() {
     venueAddress:    gv('details-venueAddress'),
     googleMapsLink:  gv('details-googleMapsLink'),
     wazeLink:        gv('details-wazeLink'),
+    eventDate:       gv('details-eventDate'),
+    eventDateSub:    gv('details-eventDateSub'),
     registrationTime: gv('details-registrationTime'),
     eventTime:       gv('details-eventTime'),
     bonusTime:       gv('details-bonusTime')
