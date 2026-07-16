@@ -1259,13 +1259,14 @@
 
   <script>
     // ===== COUNTDOWN TIMER =====
+    // Target date is set by the CMS populate script via window.__CMS_COUNTDOWN_TARGET__
     (function() {
-      var targetDate = new Date('2026-06-29T10:00:00+08:00');
-      var startDate = new Date('2026-06-08T00:00:00+08:00');
-
       function pad(n) { return String(n).padStart(2, '0'); }
 
       function updateCountdown() {
+        var targetDate = window.__CMS_COUNTDOWN_TARGET__;
+        if (!targetDate) return; // wait for CMS config to load
+
         var now = new Date();
         var diff = targetDate - now;
 
@@ -1275,7 +1276,7 @@
           return;
         }
 
-        // Calendar-day count (midnight → midnight) so "June 23 → June 29 = 6 days"
+        // Calendar-day count (midnight → midnight)
         var nowMidnight    = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         var targetMidnight = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
         var days  = Math.max(0, Math.round((targetMidnight - nowMidnight) / (1000 * 60 * 60 * 24)));
@@ -1394,7 +1395,7 @@
 
     function renderHomework(hw) {
       var list = document.getElementById('cms-homework-list');
-      if (!list) return;
+      if (!list || !hw.items) return;
       list.innerHTML = hw.items.map(function(item) {
         return '<li class="homework-item"><span class="hw-num">' + item.icon + '</span>' +
           '<div class="hw-text"><strong>' + item.title + '</strong><span>' + item.description + '</span></div></li>';
