@@ -702,7 +702,8 @@ function saveGitHubSettings() {
   localStorage.setItem('cms-gh-repo',   document.getElementById('cfg-gh-repo').value.trim());
   localStorage.setItem('cms-gh-branch', document.getElementById('cfg-gh-branch').value.trim() || 'main');
   localStorage.setItem('cms-gh-path',   document.getElementById('cfg-gh-path').value.trim() || 'ck-config.json');
-  showToast('Connection settings saved ✓', 'success');
+  showToast('Connection settings saved — loading config…', 'success');
+  loadFromGitHub(); // auto-load content after saving new credentials
 }
 
 function loadGitHubSettings() {
