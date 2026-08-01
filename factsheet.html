@@ -712,14 +712,14 @@
   <div id="hero-bg"></div>
   <div id="hero-overlay"></div>
 
-  <div class="badge-pill">Event Factsheet</div>
-  <h1>AI Implementation Bootcamp</h1>
+  <div class="badge-pill" data-cms="hero.badgePill">Event Factsheet</div>
+  <h1 data-cms="hero.title">AI Implementation Bootcamp</h1>
   <hr class="hero-divider" />
 
   <div class="event-pills">
-    <span class="event-pill">📅 28 – 30 August 2026 &nbsp;·&nbsp; Friday – Sunday</span>
-    <span class="event-pill">🕙 10:00 AM – 6:00 PM</span>
-    <span class="event-pill">📍 Menara EcoWorld, KL</span>
+    <span class="event-pill" data-cms="pills.date">📅 28 – 30 August 2026 &nbsp;·&nbsp; Friday – Sunday</span>
+    <span class="event-pill" data-cms="pills.time">🕙 10:00 AM – 6:00 PM</span>
+    <span class="event-pill" data-cms="pills.location">📍 Menara EcoWorld, KL</span>
   </div>
 </section>
 
@@ -734,12 +734,12 @@
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
     <div class="sidebar-card meta-card">
-      <img src="Banner%20(new).png" alt="AI Implementation Bootcamp" class="meta-logo" />
+      <img src="Banner%20(new).png" alt="AI Implementation Bootcamp" class="meta-logo" id="meta-logo-img" />
       <div class="meta-divider"></div>
       <div>
-        <div class="meta-date">28 – 30 Aug 2026</div>
-        <div class="meta-days">Friday – Sunday</div>
-        <div class="meta-time">10:00 AM – 6:00 PM</div>
+        <div class="meta-date" data-cms="sidebar.date">28 – 30 Aug 2026</div>
+        <div class="meta-days" data-cms="sidebar.days">Friday – Sunday</div>
+        <div class="meta-time" data-cms="sidebar.time">10:00 AM – 6:00 PM</div>
       </div>
     </div>
 
@@ -777,28 +777,28 @@
           <div class="info-row">
             <div class="info-label">Venue</div>
             <div class="info-value">
-              <div class="venue-name">Vertex Mastery Sdn Bhd</div>
-              <div class="venue-address">39-07, Menara Ecoworld @ BBCC,<br>2, Jln Hang Tuah, Bukit Bintang,<br>55100 Kuala Lumpur</div>
+              <div class="venue-name" data-cms="details.venueName">Vertex Mastery Sdn Bhd</div>
+              <div class="venue-address" data-cms-html="details.venueAddress">39-07, Menara Ecoworld @ BBCC,<br>2, Jln Hang Tuah, Bukit Bintang,<br>55100 Kuala Lumpur</div>
               <div class="map-buttons">
-                <a href="https://www.google.com/maps/search/?api=1&query=Vertex+Mastery+Sdn+Bhd+39-07+Menara+Ecoworld+BBCC+2+Jln+Hang+Tuah+Bukit+Bintang+55100+Kuala+Lumpur" target="_blank" rel="noopener" class="map-btn map-btn-gmaps">📍 Google Maps</a>
-                <a href="https://waze.com/ul/hw283f7wb2" target="_blank" rel="noopener" class="map-btn map-btn-waze">🔵 Waze</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Vertex+Mastery+Sdn+Bhd+39-07+Menara+Ecoworld+BBCC+2+Jln+Hang+Tuah+Bukit+Bintang+55100+Kuala+Lumpur" target="_blank" rel="noopener" class="map-btn map-btn-gmaps" data-cms-href="details.googleMapsLink">📍 Google Maps</a>
+                <a href="https://waze.com/ul/hw283f7wb2" target="_blank" rel="noopener" class="map-btn map-btn-waze" data-cms-href="details.wazeLink">🔵 Waze</a>
               </div>
-              <img src="Building%20Exterior%20Picture.jpg" alt="Menara EcoWorld" class="venue-exterior-photo" />
+              <img src="Building%20Exterior%20Picture.jpg" alt="Menara EcoWorld" class="venue-exterior-photo" id="venue-exterior-img" />
             </div>
           </div>
           <div class="info-row">
             <div class="info-label">Date</div>
             <div class="info-value">
-              <strong>28 – 30 August 2026</strong><br>
-              <span style="color:var(--text-heading-accent);font-style:italic;">Friday – Sunday</span>
+              <strong data-cms="details.eventDate">28 – 30 August 2026</strong><br>
+              <span style="color:var(--text-heading-accent);font-style:italic;" data-cms="details.eventDateSub">Friday – Sunday</span>
             </div>
           </div>
           <div class="info-row">
             <div class="info-label">Time</div>
             <div class="info-value">
-              Registration Time: <strong>9:30 AM</strong><br>
-              Event Time: <strong>10:00 AM – 6:00 PM</strong><br>
-              Bonus Session: <strong>7:00 PM – 9:00 PM</strong>
+              Registration Time: <strong data-cms="details.registrationTime">9:30 AM</strong><br>
+              Event Time: <strong data-cms="details.eventTime">10:00 AM – 6:00 PM</strong><br>
+              Bonus Session: <strong data-cms="details.bonusTime">7:00 PM – 9:00 PM</strong>
               <span class="time-note">End time may vary.</span>
             </div>
           </div>
@@ -817,15 +817,15 @@
       <div class="accordion-body">
         <div class="venue-body">
 
-          <div class="subsection-heading">If You Are Taking Grab To The Venue</div>
-          <p class="drop-info">Drop-off Point: <strong>Menara EcoWorld</strong></p>
+          <div class="subsection-heading" data-cms="venueGuide.grabHeading">If You Are Taking Grab To The Venue</div>
+          <p class="drop-info">Drop-off Point: <strong data-cms="venueGuide.grabDropoff">Menara EcoWorld</strong></p>
 
           <hr class="separator" />
 
-          <div class="subsection-heading">If You Are Driving To The Venue</div>
+          <div class="subsection-heading" data-cms="venueGuide.drivingHeading">If You Are Driving To The Venue</div>
           <p class="subsection-label">Parking Options</p>
 
-          <div class="parking-grid">
+          <div class="parking-grid" id="cms-parking-grid">
             <div class="parking-card">
               <div class="parking-card-header">
                 <div class="parking-option-label">Option 1</div>
@@ -871,10 +871,10 @@
 
           <div class="lobby-section">
             <hr class="separator" />
-            <div class="subsection-heading">When You Arrive At The Venue Lobby</div>
-            <p class="lobby-text">Head to the reception counter to register. Mention to the security guards that you are going up to <strong>Level 39, Unit 07</strong>.</p>
-            <img src="Building%20Lobby%20Picture.jpg" alt="Building lobby" class="venue-img" />
-            <p class="venue-img-caption">Head to the reception counter upon arrival</p>
+            <div class="subsection-heading" data-cms="venueGuide.lobbyHeading">When You Arrive At The Venue Lobby</div>
+            <p class="lobby-text" data-cms-html="venueGuide.lobbyText">Head to the reception counter to register. Mention to the security guards that you are going up to <strong>Level 39, Unit 07</strong>.</p>
+            <img src="Building%20Lobby%20Picture.jpg" alt="Building lobby" class="venue-img" id="cms-lobby-photo" />
+            <p class="venue-img-caption" data-cms="venueGuide.lobbyCaption">Head to the reception counter upon arrival</p>
           </div>
 
         </div>
@@ -893,7 +893,7 @@
         <div class="prepare-body">
 
           <div class="prepare-section-title">Items to Bring</div>
-          <ul class="items-list">
+          <ul class="items-list" id="cms-bring-list">
             <li><span class="item-emoji">💻</span><span>Your laptop and charger</span></li>
             <li><span class="item-emoji">💧</span><span>Water Bottle with Lid</span></li>
             <li><span class="item-emoji">🧥</span><span>Jacket <em>(Highly recommended!)</em></span></li>
@@ -914,9 +914,9 @@
       <div class="accordion-body">
         <div class="prepare-body">
 
-          <a href="https://drive.google.com/file/d/1TiUXYApvDNKysBagYhDjpzie-DzHmEKi/view?usp=sharing" target="_blank" rel="noopener" class="prep-guide-btn">📄 Attendee Prep Guide PDF</a>
+          <a href="https://drive.google.com/file/d/1TiUXYApvDNKysBagYhDjpzie-DzHmEKi/view?usp=sharing" target="_blank" rel="noopener" class="prep-guide-btn" id="cms-prep-guide-btn">📄 Attendee Prep Guide PDF</a>
 
-          <ul class="homework-list">
+          <ul class="homework-list" id="cms-homework-list">
             <li class="homework-item">
               <span class="hw-num">1️⃣</span>
               <div class="hw-text">
@@ -969,10 +969,10 @@
       <div class="accordion-body">
         <div class="dress-body">
           <div class="dress-code-box">
-            <span class="dress-emoji">👔</span>
+            <span class="dress-emoji" data-cms="dressCode.emoji">👔</span>
             <div>
-              <div class="dress-text">Smart Casual</div>
-              <div class="dress-note">Bring a jacket along as the room will be cold.</div>
+              <div class="dress-text" data-cms="dressCode.label">Smart Casual</div>
+              <div class="dress-note" data-cms="dressCode.note">Bring a jacket along as the room will be cold.</div>
             </div>
           </div>
         </div>
@@ -988,7 +988,7 @@
         <div class="chevron-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
       </div>
       <div class="accordion-body">
-        <div class="faq-body">
+        <div class="faq-body" id="cms-faq-body">
 
           <div class="faq-item">
             <div class="faq-q"><span class="faq-q-label">Q</span><span class="faq-q-text">Can I transfer my ticket to someone else?</span></div>
@@ -1015,10 +1015,10 @@
 <!-- ===== FOOTER ===== -->
 <footer id="footer">
   <div class="cta-buttons">
-    <a href="https://api.whatsapp.com/send/?phone=601154581419&text&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="cta-btn">📞 Contact Us</a>
+    <a href="https://api.whatsapp.com/send/?phone=601154581419&text&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="cta-btn" id="cms-contact-btn" data-cms-href="footer.contactLink">📞 Contact Us</a>
   </div>
-  <p class="footer-brand">Vertex Mastery Sdn Bhd</p>
-  <p class="footer-copy">Copyright 2026. All Rights Reserved, Vertex Mastery Sdn Bhd.</p>
+  <p class="footer-brand" data-cms="footer.brandName">Vertex Mastery Sdn Bhd</p>
+  <p class="footer-copy" data-cms="footer.copyright">Copyright 2026. All Rights Reserved, Vertex Mastery Sdn Bhd.</p>
 </footer>
 
 <!-- Back to top -->
@@ -1027,7 +1027,7 @@
 <script>
   // ===== COUNTDOWN TIMER =====
   (function() {
-    var targetDate = new Date('2026-08-28T10:00:00+08:00');
+    var defaultTargetDate = new Date('2026-08-28T10:00:00+08:00');
     var heroEl = document.getElementById('cd-hero');
     var miniEl = document.getElementById('cd-mini');
 
@@ -1081,6 +1081,7 @@
     }
 
     function update() {
+      var targetDate = window.__CMS_COUNTDOWN_TARGET__ || defaultTargetDate;
       var now = new Date();
       var diff = targetDate - now;
       if (diff <= 0) { showEnded(); return; }
@@ -1163,6 +1164,127 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   })();
+</script>
+
+<!-- CMS POPULATE SCRIPT -->
+<script>
+(function() {
+  var GIST_ID = "4d2035b161e078a24f3b3493166b069f";
+
+  function get(obj, path) {
+    return path.split('.').reduce(function(o, k) { return o && o[k] !== undefined ? o[k] : null; }, obj);
+  }
+
+  function mdToHtml(str) {
+    if (str === null || str === undefined) return str;
+    return String(str)
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  }
+
+  function renderParking(cards) {
+    var grid = document.getElementById('cms-parking-grid');
+    if (!grid || !cards || !cards.length) return;
+    grid.innerHTML = cards.map(function(card, i) {
+      var instrHtml = (card.instructions || []).map(function(ins) {
+        return '<p class="parking-instruction">' + mdToHtml(ins) + '</p>';
+      }).join('');
+      var photoHtml = card.photo
+        ? '<img src="' + card.photo + '" alt="' + (card.name || 'Parking') + '" class="parking-photo" />' +
+          (card.photoCaption ? '<p class="parking-photo-caption">' + mdToHtml(card.photoCaption) + '</p>' : '')
+        : '';
+      var ratesHtml = (card.rates || []).map(function(r) {
+        return '<div class="rates-row"><span>' + r.label + '</span><span>' + r.value + '</span></div>';
+      }).join('');
+      var videoHtml = card.videoLink
+        ? '<a href="' + card.videoLink + '" target="_blank" rel="noopener" class="dir-video-btn">▶ ' + (card.videoLabel || 'Directory Video') + '</a>'
+        : '';
+      return '<div class="parking-card">' +
+        '<div class="parking-card-header"><div class="parking-option-label">Option ' + (i + 1) + '</div><div class="parking-name">' + card.name + '</div></div>' +
+        '<div class="parking-card-body"><div class="parking-section-title">How to Park</div>' + instrHtml + photoHtml +
+        '<div class="parking-section-title">Rates</div><div class="rates-list">' + ratesHtml + '</div>' + videoHtml + '</div></div>';
+    }).join('');
+  }
+
+  function renderBring(items) {
+    var list = document.getElementById('cms-bring-list');
+    if (!list || !items || !items.length) return;
+    list.innerHTML = items.map(function(item) {
+      return '<li><span class="item-emoji">' + item.emoji + '</span><span>' + mdToHtml(item.text) + '</span></li>';
+    }).join('');
+  }
+
+  function renderHomework(hw) {
+    var list = document.getElementById('cms-homework-list');
+    if (list && hw.items && hw.items.length) {
+      list.innerHTML = hw.items.map(function(item) {
+        return '<li class="homework-item"><span class="hw-num">' + item.icon + '</span>' +
+          '<div class="hw-text"><strong>' + item.title + '</strong><span>' + mdToHtml(item.description) + '</span></div></li>';
+      }).join('');
+    }
+    var btn = document.getElementById('cms-prep-guide-btn');
+    if (btn && hw.prepGuideLink) {
+      btn.href = hw.prepGuideLink;
+      btn.innerHTML = hw.prepGuideLabel || '📄 Attendee Prep Guide PDF';
+    }
+  }
+
+  function renderFaq(faqList) {
+    var body = document.getElementById('cms-faq-body');
+    if (!body || !faqList || !faqList.length) return;
+    body.innerHTML = faqList.map(function(item) {
+      return '<div class="faq-item"><div class="faq-q"><span class="faq-q-label">Q</span><span class="faq-q-text">' + item.question + '</span></div>' +
+        '<div class="faq-a"><span class="faq-a-label">A</span><span class="faq-a-text">' + mdToHtml(item.answer) + '</span></div></div>';
+    }).join('');
+  }
+
+  function applyConfig(cfg) {
+    document.querySelectorAll('[data-cms]').forEach(function(el) {
+      var val = get(cfg, el.getAttribute('data-cms'));
+      if (val !== null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-cms-html]').forEach(function(el) {
+      var val = get(cfg, el.getAttribute('data-cms-html'));
+      if (val !== null) el.innerHTML = mdToHtml(val);
+    });
+    document.querySelectorAll('[data-cms-href]').forEach(function(el) {
+      var val = get(cfg, el.getAttribute('data-cms-href'));
+      if (val !== null) el.href = val;
+    });
+    if (cfg.meta && cfg.meta.pageTitle) document.title = cfg.meta.pageTitle;
+    if (cfg.countdown && cfg.countdown.targetDate) {
+      window.__CMS_COUNTDOWN_TARGET__ = new Date(cfg.countdown.targetDate);
+    }
+    if (cfg.hero && cfg.hero.heroImage) {
+      var heroBg = document.getElementById('hero-bg');
+      if (heroBg) heroBg.style.backgroundImage = "url('" + cfg.hero.heroImage + "')";
+      var logoImg = document.getElementById('meta-logo-img');
+      if (logoImg) logoImg.src = cfg.hero.heroImage;
+    }
+    if (cfg.details && cfg.details.venuePhoto) {
+      var vImg = document.getElementById('venue-exterior-img');
+      if (vImg) vImg.src = cfg.details.venuePhoto;
+    }
+    if (cfg.venueGuide && cfg.venueGuide.lobbyPhoto) {
+      var lImg = document.getElementById('cms-lobby-photo');
+      if (lImg) lImg.src = cfg.venueGuide.lobbyPhoto;
+    }
+    if (cfg.venueGuide && cfg.venueGuide.parking) renderParking(cfg.venueGuide.parking);
+    if (cfg.whatToBring) renderBring(cfg.whatToBring);
+    if (cfg.homework) renderHomework(cfg.homework);
+    if (cfg.faq) renderFaq(cfg.faq);
+  }
+
+  fetch('https://api.github.com/gists/' + GIST_ID + '?_=' + Date.now())
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(gist) {
+      var file = gist.files && gist.files['aibootcamp-config.json'];
+      if (!file || !file.content) throw new Error('config file missing from gist');
+      return JSON.parse(file.content);
+    })
+    .then(function(cfg) { applyConfig(cfg); })
+    .catch(function(e) { console.warn('CMS config not loaded, using built-in defaults:', e); });
+})();
 </script>
 
 </body>
