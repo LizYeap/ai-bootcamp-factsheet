@@ -734,10 +734,13 @@ async function testConnection() {
 // ============================================================
 //  LOAD CONFIG FROM GITHUB
 // ============================================================
-async function loadFromGitHub() {
+async function loadFromGitHub(silent) {
   var s = getGHSettings();
-  if (!s.token || !s.repo) { showToast('Set GitHub credentials in Settings first', 'error'); return; }
-  showStatus('saving', 'Loading…');
+  if (!s.token || !s.repo) {
+    if (!silent) showToast('Set GitHub credentials in Settings first', 'error');
+    return;
+  }
+  if (!silent) showStatus('saving', 'Loading…');
   try {
     var url = 'https://api.github.com/repos/' + s.repo + '/contents/' + s.path + '?ref=' + s.branch;
     var r = await fetch(url, { headers: { Authorization: 'token ' + s.token, Accept: 'application/vnd.github.v3+json' } });
@@ -748,13 +751,17 @@ async function loadFromGitHub() {
     for (var i = 0; i < binaryStr.length; i++) { bytes[i] = binaryStr.charCodeAt(i); }
     var json = JSON.parse(new TextDecoder('utf-8').decode(bytes));
     cfg = json;
-    cfg.__sha = data.sha; // store for update
+    cfg.__sha = data.sha;
     populateFields(cfg);
     showStatus('success', 'Loaded ✓');
-    showToast('Config loaded from GitHub ✓', 'success');
+    if (!silent) showToast('Config loaded from GitHub ✓', 'success');
   } catch(e) {
-    showStatus('error', 'Error');
-    showToast('Failed to load: ' + e.message, 'error');
+    if (!silent) {
+      showStatus('error', 'Error');
+      showToast('Failed to load: ' + e.message, 'error');
+    } else {
+      showStatus('error', '⚠ Token error — go to Settings');
+    }
   }
 }
 
@@ -1181,7 +1188,7 @@ loadGitHubSettings();
 (function() {
   var s = getGHSettings();
   if (s.token && s.repo) {
-    loadFromGitHub();
+    loadFromGitHub(true); // silent on startup — errors show only in topbar badge
   }
 })();
 </script>
