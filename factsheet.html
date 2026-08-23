@@ -1086,7 +1086,9 @@
       var diff = targetDate - now;
       if (diff <= 0) { showEnded(); return; }
 
-      var days = Math.floor(diff / 86400000);
+      var nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var targetMidnight = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+      var days = Math.max(0, Math.round((targetMidnight - nowMidnight) / 86400000));
       var hours = Math.floor((diff % 86400000) / 3600000);
       var mins = Math.floor((diff % 3600000) / 60000);
       var secs = Math.floor((diff % 60000) / 1000);
